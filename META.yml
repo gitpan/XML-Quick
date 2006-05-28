@@ -1,0 +1,12 @@
+---
+name: XML-Quick
+version: 0.01
+author:
+  - Robert Norris (Robert.Norris@its.monash.edu.au)
+abstract: Generate XML from hashes (and other data)
+license: perl
+provides:
+  XML::Quick:
+    file: lib/XML/Quick.pm
+    version: 0.01
+generated_by: Module::Build version 0.26
