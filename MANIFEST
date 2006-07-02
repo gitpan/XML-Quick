@@ -1,9 +1,12 @@
-MANIFEST
-META.yml
-README
-LICENSE
-Changes
 Build.PL
-Makefile.PL
+Changes
+MANIFEST
+META.yml # Will be created by "make dist"
+README
 lib/XML/Quick.pm
-t/001_load.t
+t/00-load.t
+t/05-escape.t
+t/10-xml.t
+t/boilerplate.t
+t/pod-coverage.t
+t/pod.t

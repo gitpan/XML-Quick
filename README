@@ -1,3 +1,4 @@
+
 NAME
     XML::Quick - Generate XML from hashes (and other data)
 
@@ -18,8 +19,6 @@ INSTALL
         ./Build
         ./Build test
         ./Build install
-
-    If you are on a windows box you should use 'nmake' rather than 'make'.
 
 DEPENDENCIES
     Requires Perl6::Export::Attrs, Scalar::Util

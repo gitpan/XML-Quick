@@ -6,7 +6,7 @@ use strict;
 use Perl6::Export::Attrs;
 use Scalar::Util qw(reftype);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 # cdata escaping
 sub _escape($) {
@@ -136,7 +136,12 @@ XML::Quick - Generate XML from hashes (and other data)
 This module generates XML from Perl data (typically a hash). It tries hard to
 produce something sane no matter what you pass it. It probably fails.
 
-The simplest thing you can do is C<xml()> a basic string. It will be
+When you use this module, it will export the C<xml> function into your
+namespace. This function does everything.
+
+=head2 xml
+
+The simplest thing you can do is call C<xml> a basic string. It will be
 XML-escaped for you:
 
     xml('v&lue');
