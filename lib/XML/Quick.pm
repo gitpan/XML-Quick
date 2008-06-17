@@ -3,10 +3,14 @@ package XML::Quick;
 use warnings;
 use strict;
 
-use Perl6::Export::Attrs;
 use Scalar::Util qw(reftype);
+use Exporter;
 
-our $VERSION = '0.02';
+use base qw(Exporter);
+
+our @EXPORT = qw(xml);
+
+our $VERSION = '0.03';
 
 # cdata escaping
 sub _escape($) {
@@ -17,14 +21,20 @@ sub _escape($) {
     return $cdata;
 };
 
-sub xml :Export(:DEFAULT) {
+sub xml {
     my ($data, $opts) = @_;
 
     # handle undef properly
     $data = '' if not defined $data;
     
-    # make sure we have some options, even if we don't
-    $opts = {} if not defined $opts or reftype $opts ne 'HASH';
+    if (not defined $opts or reftype $opts ne 'HASH') {
+        # empty options hash if they didn't provide one
+        $opts = {};
+    }
+    else {
+        # shallow copy the opts so we don't modify the callers
+        $opts = {%$opts};
+    }
 
     # escape by default
     $opts->{escape} = 1 if not exists $opts->{escape};
@@ -41,12 +51,10 @@ sub xml :Export(:DEFAULT) {
         # move attrs/cdata into opts as necessary
         if(exists $data->{_attrs}) {
             $opts->{attrs} = $data->{_attrs} if not exists $opts->{attrs};
-            delete $data->{_attrs};
         }
 
         if(exists $data->{_cdata}) {
             $opts->{cdata} = $data->{_cdata} if not exists $opts->{cdata};
-            delete $data->{cdata};
         }
         
         # loop over the keys
@@ -303,13 +311,11 @@ wrap an XML string with another tag.
 
 =back
 
-=head1 DEPENDENCIES
-
-Requires Perl6::Export::Attrs, Scalar::Util
-
 =head1 AUTHOR
 
-Robert Norris (Robert.Norris@its.monash.edu.au)
+Robert Norris (rob@cataclysm.cx)
+
+YAMASHINA Hio fixed a bug where C<xml> would modify the caller's data
 
 =head1 BUGS AND LIMITATIONS
 
@@ -330,6 +336,8 @@ welcome.
 
 =head1 COPYRIGHT
 
-Copyright (c) 2005 Monash University. All Rights Reserved. This program is free
-software; you can redistribute it and/or modify it under the same terms as Perl
-itself.
+Copyright (c) 2005-2006 Monash University.
+Copyright (c) 2008 Robert Norris
+
+This program is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.

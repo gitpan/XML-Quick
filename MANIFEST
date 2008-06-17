@@ -1,12 +1,12 @@
 Build.PL
 Changes
-MANIFEST
-META.yml # Will be created by "make dist"
-README
 lib/XML/Quick.pm
+MANIFEST			This list of files
+META.yml
+README
 t/00-load.t
 t/05-escape.t
 t/10-xml.t
-t/boilerplate.t
+t/20-keep-object.t
 t/pod-coverage.t
 t/pod.t
