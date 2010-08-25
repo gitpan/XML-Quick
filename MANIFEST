@@ -6,6 +6,7 @@ META.yml
 README
 t/00-load.t
 t/05-escape.t
+t/07-numeric-escape.t
 t/10-xml.t
 t/20-keep-object.t
 t/pod-coverage.t
